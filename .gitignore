@@ -1,0 +1,6 @@
+# Binaries
+/bin/http-scheduler
+
+# Env variables
+.env
+.env.production

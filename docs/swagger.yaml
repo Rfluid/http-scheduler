@@ -1,0 +1,25 @@
+info:
+  contact: {}
+  description: Schedules data propagations using HTTP requests
+  title: Http Scheduler
+  version: "1.0"
+paths:
+  /status-check:
+    get:
+      description: Returns a 200 status if server is up
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Status check
+      tags:
+      - Health
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,38 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Schedules data propagations using HTTP requests",
+        "title": "Http Scheduler",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/status-check": {
+            "get": {
+                "description": "Returns a 200 status if server is up",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Status check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
