@@ -11,7 +11,7 @@ import (
 
 var (
 	RedisClient *redis.Client
-	ctx         = context.Background() // Context passed to Redis client
+	Ctx         = context.Background() // Context passed to Redis client
 )
 
 func Connect() {
@@ -23,7 +23,7 @@ func Connect() {
 	})
 
 	// Test the connection
-	_, err := RedisClient.Ping(ctx).Result()
+	_, err := RedisClient.Ping(Ctx).Result()
 	if err != nil {
 		pterm.DefaultLogger.Error("Unable to connect to Redis")
 		os.Exit(1)
@@ -31,7 +31,7 @@ func Connect() {
 	pterm.DefaultLogger.Info("Connected to Redis")
 
 	pterm.DefaultLogger.Info("Pinging to Redis")
-	_, err = RedisClient.Ping(ctx).Result()
+	_, err = RedisClient.Ping(Ctx).Result()
 	if err != nil {
 		pterm.DefaultLogger.Error("Unable to ping to Redis")
 		os.Exit(1)

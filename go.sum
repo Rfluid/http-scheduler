@@ -19,6 +19,10 @@ github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 h1:d+Bc7a5rLufV
 github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578/go.mod h1:uGdkoq3SwY9Y+13GIhn11/XLaGBb4BfwItxLd5jeuXE=
 github.com/Rfluid/scheduler v0.1.0 h1:F0caj2fxWFisDRf7sl97prlkbnsHu18enYmh6Lgvxcw=
 github.com/Rfluid/scheduler v0.1.0/go.mod h1:zULPrDjAPbGrUv9FTaKzMGLvPdTsmxnHAXKJHNYlfgw=
+github.com/Rfluid/scheduler v0.1.1 h1:0OLnxcCbqcKt8mJSa4t/cmj05XvUEM0LK9n65R8s0YE=
+github.com/Rfluid/scheduler v0.1.1/go.mod h1:zULPrDjAPbGrUv9FTaKzMGLvPdTsmxnHAXKJHNYlfgw=
+github.com/Rfluid/scheduler v0.1.2 h1:cCmZpx7ImblGPYDqcowoG8hcyRXYFdEWtCD/ElNyFac=
+github.com/Rfluid/scheduler v0.1.2/go.mod h1:zULPrDjAPbGrUv9FTaKzMGLvPdTsmxnHAXKJHNYlfgw=
 github.com/andybalholm/brotli v1.0.5 h1:8uQZIdzKmjc/iuPu7O2ioW48L81FgatrcpfFmiq/cCs=
 github.com/andybalholm/brotli v1.0.5/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/atomicgo/cursor v0.0.1/go.mod h1:cBON2QmmrysudxNBFthvMtN32r3jxVRIvzkUiF/RuIk=

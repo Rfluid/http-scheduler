@@ -1,12 +1,12 @@
 build:
 	echo "Generating docs"
-	swag init
+	swag init --parseDependency
 	echo "Compiling for your OS"
 	go build -o ./bin/http-scheduler
 
 compile:
 	echo "Generating docs"
-	swag init
+	swag init --parseDependency
 	echo "Compiling for every OS and Platform"
 	GOOS=linux GOARCH=arm go build -o ./bin/http-scheduler-linux-arm 
 	GOOS=linux GOARCH=arm64 go build -o ./bin/http-scheduler-linux-arm64 
@@ -16,7 +16,7 @@ compile:
 run:
 	clear
 	echo "Generating docs"
-	swag init
+	swag init --parseDependency
 	echo "Running your program"
 	go run main.go
 

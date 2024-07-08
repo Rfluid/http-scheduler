@@ -1,3 +1,42 @@
+definitions:
+  fiber.Map:
+    additionalProperties: true
+    type: object
+  time.Duration:
+    enum:
+    - -9223372036854775808
+    - 9223372036854775807
+    - 1
+    - 1000
+    - 1000000
+    - 1000000000
+    - 60000000000
+    - 3600000000000
+    type: integer
+    x-enum-varnames:
+    - minDuration
+    - maxDuration
+    - Nanosecond
+    - Microsecond
+    - Millisecond
+    - Second
+    - Minute
+    - Hour
+  worker_model.InsertSorted:
+    properties:
+      data:
+        additionalProperties: true
+        description: Data passed to callback.
+        type: object
+      execute_at:
+        description: Execution date of callback.
+        type: string
+      future_offset:
+        allOf:
+        - $ref: '#/definitions/time.Duration'
+        description: Difference between the current time and the execution date in
+          seconds. Will be loaded just if execute_at is not set.
+    type: object
 info:
   contact: {}
   description: Schedules data propagations using HTTP requests
@@ -17,6 +56,37 @@ paths:
       summary: Status check
       tags:
       - Health
+  /worker/insert-sorted:
+    post:
+      consumes:
+      - application/json
+      description: Inserts data to be executed in callback at specific date in scheduler
+        worker.
+      parameters:
+      - description: Insert task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/worker_model.InsertSorted'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Invalid request body
+          schema:
+            $ref: '#/definitions/fiber.Map'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/fiber.Map'
+      summary: Schedules callback at data.
+      tags:
+      - Worker
 securityDefinitions:
   ApiKeyAuth:
     in: header

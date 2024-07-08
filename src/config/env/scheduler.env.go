@@ -7,16 +7,12 @@ import (
 	"github.com/pterm/pterm"
 )
 
-var (
-	SchedulerListKey string
-	SchedulerLockKey string
-)
+var SchedulerSetKey string
 
 func loadSchedulerEnv() {
-	SchedulerListKey = os.Getenv("SCHEDULER_LIST_KEY")
-	SchedulerLockKey = os.Getenv("SCHEDULER_LOCK_KEY")
+	SchedulerSetKey = os.Getenv("SCHEDULER_SET_KEY")
 
 	pterm.DefaultLogger.Info(
-		fmt.Sprintf("Scheduler environment done with list key %s and lock key %s", SchedulerListKey, SchedulerLockKey),
+		fmt.Sprintf("Scheduler environment done with set key %s", SchedulerSetKey),
 	)
 }

@@ -34,6 +34,103 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/worker/insert-sorted": {
+            "post": {
+                "description": "Inserts data to be executed in callback at specific date in scheduler worker.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "Schedules callback at data.",
+                "parameters": [
+                    {
+                        "description": "Insert task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/worker_model.InsertSorted"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body",
+                        "schema": {
+                            "$ref": "#/definitions/fiber.Map"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/fiber.Map"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "fiber.Map": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "time.Duration": {
+            "type": "integer",
+            "enum": [
+                -9223372036854775808,
+                9223372036854775807,
+                1,
+                1000,
+                1000000,
+                1000000000,
+                60000000000,
+                3600000000000
+            ],
+            "x-enum-varnames": [
+                "minDuration",
+                "maxDuration",
+                "Nanosecond",
+                "Microsecond",
+                "Millisecond",
+                "Second",
+                "Minute",
+                "Hour"
+            ]
+        },
+        "worker_model.InsertSorted": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "Data passed to callback.",
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "execute_at": {
+                    "description": "Execution date of callback.",
+                    "type": "string"
+                },
+                "future_offset": {
+                    "description": "Difference between the current time and the execution date in seconds. Will be loaded just if execute_at is not set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/time.Duration"
+                        }
+                    ]
+                }
+            }
         }
     },
     "securityDefinitions": {
