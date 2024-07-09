@@ -1,3 +1,9 @@
+## Introduction
+
+<!-- Write introduction -->
+
+This project is a simple HTTP server that schedules tasks using a Redis database and the [schedule](https://github.com/Rfluid/scheduler) package.
+
 ## Setup
 
 To run the default setup just hit
