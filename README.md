@@ -3,7 +3,7 @@
 To run the default setup just hit
 
 ```bash
-make setup
+sudo make setup
 ```
 
 The setup command may not work if some of your installations are not in the default path, in this case you can run the commands manually.
@@ -24,7 +24,7 @@ This command will start a Redis container with the default port `6379` and the p
 To initialize the setup, run the following command:
 
 ```bash
-make init-setup
+sudo make init-setup
 ```
 
 Or start the database container and other resources manually.

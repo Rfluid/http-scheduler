@@ -27,10 +27,10 @@ clean:
 
 setup: # Use this command to setup the environment
 	echo "Setting docker container"
-	sudo docker run -d --name http-scheduler-redis -p 6379:6379 -e REDIS_PASSWORD=redis redis
+	docker run -d --name http-scheduler-redis -p 6379:6379 -e REDIS_PASSWORD=redis redis
 
 init-setup: # Use this command to init the setup
 	echo "Initializing setup"
 	echo "Initializing Redis server"
-	sudo docker start http-scheduler-redis
+	docker start http-scheduler-redis
 
