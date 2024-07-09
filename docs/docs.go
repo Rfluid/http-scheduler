@@ -35,6 +35,55 @@ const docTemplate = `{
                 }
             }
         },
+        "/worker/insert-many-sorted": {
+            "post": {
+                "description": "Inserts data to be executed in callback at specific date in scheduler worker for each element.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "Schedules callback for all elements.",
+                "parameters": [
+                    {
+                        "description": "Insert tasks",
+                        "name": "tasks",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/worker_model.InsertSorted"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body",
+                        "schema": {
+                            "$ref": "#/definitions/fiber.Map"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/fiber.Map"
+                        }
+                    }
+                }
+            }
+        },
         "/worker/insert-sorted": {
             "post": {
                 "description": "Inserts data to be executed in callback at specific date in scheduler worker.",

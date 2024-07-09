@@ -48,6 +48,39 @@ paths:
       summary: Status check
       tags:
       - Health
+  /worker/insert-many-sorted:
+    post:
+      consumes:
+      - application/json
+      description: Inserts data to be executed in callback at specific date in scheduler
+        worker for each element.
+      parameters:
+      - description: Insert tasks
+        in: body
+        name: tasks
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/worker_model.InsertSorted'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Invalid request body
+          schema:
+            $ref: '#/definitions/fiber.Map'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/fiber.Map'
+      summary: Schedules callback for all elements.
+      tags:
+      - Worker
   /worker/insert-sorted:
     post:
       consumes:

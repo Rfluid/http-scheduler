@@ -1,9 +1,8 @@
 package worker_handler
 
 import (
-	"github.com/Rfluid/http-scheduler/src/integration/scheduler"
-	"github.com/Rfluid/http-scheduler/src/redis"
 	worker_model "github.com/Rfluid/http-scheduler/src/worker/model"
+	worker_service "github.com/Rfluid/http-scheduler/src/worker/service"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -23,9 +22,8 @@ func InsertSorted(c *fiber.Ctx) error {
 	if err := c.BodyParser(&b); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Invalid request body"})
 	}
-	b.GenerateExecutionDate()
 
-	err := scheduler.Worker.InsertSortedByDate(b.Data, *b.ExecuteAt, redis.Context())
+	err := worker_service.InsertSorted(b)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
 	}

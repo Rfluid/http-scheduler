@@ -14,4 +14,5 @@ func Route(app *fiber.App) {
 
 func mainRoutes(group fiber.Router) {
 	group.Post("/insert-sorted", auth_middleware.ExternalMiddleware, auth_middleware.TokenMiddleware, worker_handler.InsertSorted)
+	group.Post("/insert-many-sorted", auth_middleware.ExternalMiddleware, auth_middleware.TokenMiddleware, worker_handler.InsertManySorted)
 }
