@@ -2,6 +2,7 @@ package redis_connect
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/Rfluid/http-scheduler/src/config/env"
@@ -25,7 +26,9 @@ func Connect() {
 	// Test the connection
 	_, err := RedisClient.Ping(Ctx).Result()
 	if err != nil {
-		pterm.DefaultLogger.Error("Unable to connect to Redis")
+		pterm.DefaultLogger.Error(
+			fmt.Sprintf("Unable to connect to Redis: %v", err),
+		)
 		os.Exit(1)
 	}
 	pterm.DefaultLogger.Info("Connected to Redis")
