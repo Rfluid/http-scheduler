@@ -7,7 +7,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func Connection() *redis.Client {
+func Connection() *redis.ClusterClient {
 	return redis_connect.RedisClient
 }
 

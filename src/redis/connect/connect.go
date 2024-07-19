@@ -11,16 +11,14 @@ import (
 )
 
 var (
-	RedisClient *redis.Client
+	RedisClient *redis.ClusterClient
 	Ctx         = context.Background() // Context passed to Redis client
 )
 
 func Connect() {
 	pterm.DefaultLogger.Info("Connecting to redis...")
-	RedisClient = redis.NewClient(&redis.Options{
-		Addr:     env.RedisAddr,
-		Password: env.RedisPassword,
-		DB:       env.RedisDB,
+	RedisClient = redis.NewClusterClient(&redis.ClusterOptions{
+		Addrs: []string{env.RedisAddr},
 	})
 
 	// Test the connection

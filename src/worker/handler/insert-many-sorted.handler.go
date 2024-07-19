@@ -7,16 +7,16 @@ import (
 )
 
 // InsertManySorted schedules callback for all elements.
-// @Summary Schedules callback for all elements.
-// @Description Inserts data to be executed in callback at specific date in scheduler worker for each element.
-// @Tags Worker
-// @Accept json
-// @Produce json
-// @Param tasks body []worker_model.InsertSorted true "Insert tasks"
-// @Success 200 {string} string "OK"
-// @Failure 400 {object} fiber.Map "Invalid request body"
-// @Failure 500 {object} fiber.Map "Internal server error"
-// @Router /worker/insert-many-sorted [post]
+//	@Summary		Schedules callback for all elements.
+//	@Description	Inserts data to be executed in callback at specific date in scheduler worker for each element.
+//	@Tags			Worker
+//	@Accept			json
+//	@Produce		json
+//	@Param			tasks	body		[]worker_model.InsertSorted	true	"Insert tasks"
+//	@Success		200		{string}	string						"OK"
+//	@Failure		400		{object}	fiber.Map					"Invalid request body"
+//	@Failure		500		{object}	fiber.Map					"Internal server error"
+//	@Router			/worker/insert-many-sorted [post]
 func InsertManySorted(c *fiber.Ctx) error {
 	// Parse the request body
 	var b []worker_model.InsertSorted
