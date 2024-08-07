@@ -18,7 +18,7 @@ var (
 func Connect() {
 	pterm.DefaultLogger.Info("Connecting to redis...")
 	RedisClient = redis.NewClusterClient(&redis.ClusterOptions{
-		Addrs: []string{env.RedisAddr},
+		Addrs: env.RedisAddrs,
 	})
 
 	// Test the connection

@@ -25,12 +25,8 @@ clean:
 	@if [ -d "./bin" ]; then rm -r ./bin; fi
 	swag fmt
 
-setup: # Use this command to setup the environment
-	echo "Setting docker container"
-	docker run -d --name http-scheduler-redis -p 6379:6379 -e REDIS_PASSWORD=redis redis
+remove-setup: # Use this command to remove all Docker containers and network
+	docker compose down --volumes --remove-orphans
 
 init-setup: # Use this command to init the setup
-	echo "Initializing setup"
-	echo "Initializing Redis server"
-	docker start http-scheduler-redis
-
+	docker compose up -d

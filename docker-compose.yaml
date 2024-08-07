@@ -1,0 +1,50 @@
+services:
+  redis-node-1:
+    image: redis:latest
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes
+    ports:
+      - 6379:6379
+    networks:
+      - redis-cluster-network
+
+  redis-node-2:
+    image: redis:latest
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes
+    ports:
+      - 6380:6379
+    networks:
+      - redis-cluster-network
+
+  redis-node-3:
+    image: redis:latest
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes
+    ports:
+      - 6381:6379
+    networks:
+      - redis-cluster-network
+
+  redis-cluster-creator:
+    image: redis:latest
+    command: redis-cli --cluster create redis-node-1:6379 redis-node-2:6379 redis-node-3:6379 --cluster-replicas 0 --cluster-yes
+    depends_on:
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+    networks:
+      - redis-cluster-network
+
+  redis-insight:
+    container_name: redis-insight
+    image: redislabs/redisinsight:latest
+    ports:
+      - 8001:8001
+    depends_on:
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+    networks:
+      - redis-cluster-network
+
+networks:
+  redis-cluster-network:
+    driver: bridge

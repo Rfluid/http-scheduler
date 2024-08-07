@@ -3,30 +3,19 @@ package env
 import (
 	"fmt"
 	"os"
-	"strconv"
+	"strings"
 
 	"github.com/pterm/pterm"
 )
 
-var (
-	RedisAddr     string
-	RedisPassword string
-	RedisDB       int
-)
+var RedisAddrs []string
 
 func loadRedisEnv() {
-	RedisAddr = os.Getenv("REDIS_ADDR")
-	RedisPassword = os.Getenv("REDIS_PASSWORD")
-	RedisDBStr := os.Getenv("REDIS_DB")
+	redisAddrs := os.Getenv("REDIS_ADDRS")
 
-	var err error = nil
-	RedisDB, err = strconv.Atoi(RedisDBStr)
-	if err != nil {
-		pterm.DefaultLogger.Error("Failed to convert REDIS_DB to int")
-		os.Exit(1)
-	}
+	RedisAddrs = strings.Split(redisAddrs, ",")
 
 	pterm.DefaultLogger.Info(
-		fmt.Sprintf("Redis environment done with host %s", RedisAddr),
+		fmt.Sprintf("Redis environment done with addrs %s", redisAddrs),
 	)
 }
