@@ -25,8 +25,14 @@ clean:
 	@if [ -d "./bin" ]; then rm -r ./bin; fi
 	swag fmt
 
-remove-setup: # Use this command to remove all Docker containers and network
-	docker compose down --volumes --remove-orphans
+setup: # Use this command to init the setup
+	docker compose up -d
 
 init-setup: # Use this command to init the setup
 	docker compose up -d
+
+stop-setup:
+	docker compose stop
+
+remove-setup: # Use this command to remove all Docker containers and network
+	docker compose down --volumes --remove-orphans

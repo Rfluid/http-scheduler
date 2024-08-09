@@ -34,7 +34,6 @@ services:
       - redis-cluster-network
 
   redis-insight:
-    container_name: redis-insight
     image: redislabs/redisinsight:latest
     ports:
       - 8001:8001
