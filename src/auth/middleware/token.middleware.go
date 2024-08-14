@@ -21,7 +21,7 @@ func TokenMiddleware(c *fiber.Ctx) error {
 	// Split the header to get the token
 	splitToken := strings.Split(authHeader, "Bearer ")
 	if len(splitToken) != 2 {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"message": fmt.Sprintf("Invalid %s header length", env.AuthHeaderKey)})
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"message": fmt.Sprintf("Invalid %s header format", env.AuthHeaderKey)})
 	}
 	tokenString := splitToken[1]
 
