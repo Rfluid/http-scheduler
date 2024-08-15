@@ -1,0 +1,27 @@
+[build]
+# Name of the executable binary
+bin = "bin/http-scheduler"
+# Command to build your application
+cmd = "go build -o ./bin/http-scheduler"
+# Directory to run the commands from
+dir = "."
+# Custom environment variables
+env = ["GOOS=linux", "GOARCH=arm"]
+
+[watch]
+# Directories to watch
+includes = ["src/**/*"]
+# File types to watch
+exts = ["go", "tpl", "tmpl", "html"]
+# Exclude directories
+exclude_dir = ["assets", "tmp", "vendor", "frontend/node_modules"]
+# Watch these filename suffixes
+suffixes = ["_gen.go"]
+
+[log]
+# Show log time
+time = false
+
+[misc]
+# Delete the binary when done
+clean_on_exit = true
