@@ -22,6 +22,8 @@ func LoadIntegration() {
 	pterm.DefaultLogger.Info("Loading scheduler integration...")
 	Worker = redis_scheduler.Create(local_redis.Connection(), env.SchedulerSetKey)
 	Worker.SetCallback(workerCallback)
+	Worker.SetTryDequeueErrCallback(tryDequeueErrCallback)
+	Worker.TryDequeue(local_redis.Context()) // Reschedule after restart
 	pterm.DefaultLogger.Info("Scheduler integration loaded")
 }
 
@@ -57,4 +59,10 @@ func workerCallback(data redis.Z) error {
 	}
 
 	return nil
+}
+
+func tryDequeueErrCallback(err error) {
+	if err != nil {
+		pterm.DefaultLogger.Error(err.Error())
+	}
 }
