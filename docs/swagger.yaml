@@ -4,24 +4,18 @@ definitions:
     type: object
   time.Duration:
     enum:
-    - -9223372036854775808
-    - 9223372036854775807
     - 1
     - 1000
     - 1000000
     - 1000000000
     - 60000000000
-    - 3600000000000
     type: integer
     x-enum-varnames:
-    - minDuration
-    - maxDuration
     - Nanosecond
     - Microsecond
     - Millisecond
     - Second
     - Minute
-    - Hour
   worker_model.InsertSorted:
     properties:
       data:
@@ -116,6 +110,30 @@ paths:
           schema:
             $ref: '#/definitions/fiber.Map'
       summary: Schedules callback at data.
+      tags:
+      - Worker
+  /worker/try-dequeue:
+    post:
+      consumes:
+      - application/json
+      description: Dequeues if the current date is after the date of the first element's
+        score. Otherwise, schedules the dequeue.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Invalid request body
+          schema:
+            $ref: '#/definitions/fiber.Map'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/fiber.Map'
+      summary: Tries to dequeue.
       tags:
       - Worker
 securityDefinitions:
